@@ -5,9 +5,7 @@
 }
 
 .footer__copyright {
-  height: 16px;
-  width: 104px;
-  font-family: Poppins Arial, Helvetica, sans-serif;
+  font-family: Poppins, Arial, Helvetica, sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 1;

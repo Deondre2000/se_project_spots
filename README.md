@@ -17,3 +17,5 @@ This is the first responsive project made for Triple Ten. What that means is thi
 This webpage is deployed to github pages.
 
 - [Deployment link](https://deondre2000.github.io/se_project_spots)
+
+Video:
