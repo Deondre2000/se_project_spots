@@ -17,6 +17,11 @@
 .profile__column {
   display: flex;
   flex-direction: column;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .profile__name {
@@ -34,8 +39,8 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   max-width: 420px;
-  height: 96px;
-  color: rgba(33, 33, 33, 1);
+  max-height: 96px;
+  color: #212121;
 }
 
 .profile__description {
@@ -65,7 +70,7 @@
   line-height: 1;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
-  color: rgba(33, 33, 33, 0.7);
+  color: #212121;
   text-align: left;
   padding: 0;
   margin: 18px 0 0 0;
@@ -118,6 +123,7 @@
     line-height: 1;
     margin-bottom: 6px;
     max-width: 288px;
+    text-align: center;
   }
 
   .profile__description {

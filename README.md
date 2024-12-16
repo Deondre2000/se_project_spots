@@ -19,3 +19,4 @@ This webpage is deployed to github pages.
 - [Deployment link](https://deondre2000.github.io/se_project_spots)
 
 Video:
+https://drive.google.com/file/d/1XpflqjKIuSqE7HgFrXb94RlnovZSyMT0/view?usp=sharing
