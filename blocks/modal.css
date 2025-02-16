@@ -40,7 +40,6 @@
 .modal__image {
   width: 100%;
   object-fit: cover;
-  width: 68vw;
   max-height: 80vh;
   top: 81px;
   left: 497px;
@@ -159,6 +158,7 @@
   }
   .modal__contanier_type_preview {
     padding: 0;
+    width: 68vw;
   }
   .modal__title {
     font-size: 20px;
@@ -173,6 +173,7 @@
     text-decoration-skip-ink: none;
     max-width: 106px;
   }
+
   .modal__close-button {
     top: 12px;
     right: 12px;
