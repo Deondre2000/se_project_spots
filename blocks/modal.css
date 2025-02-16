@@ -40,7 +40,7 @@
 .modal__image {
   width: 100%;
   object-fit: cover;
-  max-width: 68vw;
+  width: 68vw;
   max-height: 80vh;
   top: 81px;
   left: 497px;
