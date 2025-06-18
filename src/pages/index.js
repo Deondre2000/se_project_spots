@@ -1,4 +1,4 @@
-import "./index.css"
+import "./index.css";
 const initialCards = [
   {
     name: "Val Thorens",
