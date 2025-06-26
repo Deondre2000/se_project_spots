@@ -1,4 +1,5 @@
 import "./index.css";
+import Api from "../utils/Api.js";
 const initialCards = [
   {
     name: "Val Thorens",
@@ -31,6 +32,21 @@ const initialCards = [
 ];
 
 console.log(initialCards);
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "2b691c5a-4104-47de-96f0-e920839082f4",
+    "Content-Type": "application/json",
+  },
+});
+
+api.getInitialCards().then((cards) => {
+  cards.forEach((item) => {
+    const cardElement = getcardElement(item);
+    cardsList.prepend(cardElement);
+  }) 
+}).catch(console.error);
 
 //profile elements
 const profileEditButton = document.querySelector(".profile__edit-btn");
@@ -148,8 +164,3 @@ cardModalCloseBtn.addEventListener("click", () => {
 
 editFormElement.addEventListener("submit", handleEditFormSubmit);
 cardForm.addEventListener("submit", handleAddCardSubmit);
-
-initialCards.forEach((item) => {
-  const cardElement = getcardElement(item);
-  cardsList.prepend(cardElement);
-});
