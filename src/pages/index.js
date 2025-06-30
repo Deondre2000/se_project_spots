@@ -1,4 +1,4 @@
-import "./index.css";
+import "../pages/index.css";
 import Api from "../utils/Api.js";
 const initialCards = [
   {
@@ -27,7 +27,7 @@ const initialCards = [
   },
   {
     name: "Golden Gate bridge",
-    link: "  https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
   },
 ];
 
@@ -41,12 +41,28 @@ const api = new Api({
   },
 });
 
-api.getInitialCards().then((cards) => {
-  cards.forEach((item) => {
-    const cardElement = getcardElement(item);
-    cardsList.prepend(cardElement);
-  }) 
-}).catch(console.error);
+function displayUserInfo(info) {
+  profileName.textContent = info.name;
+  profileDescription.textContent = info.about;
+ds
+  const profileAvatar = document.querySelector(".profile__avatar");
+  if (profileAvatar) {
+    profileAvatar.src = info.avatar;
+    profileAvatar.alt = info.name;
+  }
+}
+
+api
+  .getAppInfo()
+  // desteructor get user info in here
+  .then(([cards, info]) => {
+    displayUserInfo(info);
+    cards.forEach((item) => {
+      const cardElement = getcardElement(item);
+      cardsList.prepend(cardElement);
+    });
+  })
+  .catch(console.error);
 
 //profile elements
 const profileEditButton = document.querySelector(".profile__edit-btn");
@@ -123,6 +139,9 @@ function closeModal(modal) {
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
+  api.editUserInfo({name:"test", about: "test" });
+  .then((data) => {});
+  .catch(console.error);
   profileName.textContent = editModalNameInput.value;
   profileDescription.textContent = editModalDescriptionInput.value;
   closeModal(editModal);
