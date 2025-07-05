@@ -1,5 +1,7 @@
 import "../pages/index.css";
 import Api from "../utils/Api.js";
+import { resetValidation, disabledButton } from "../scripts/validations.js";
+import { settings } from "../scripts/validations.js";
 const initialCards = [
   {
     name: "Val Thorens",
@@ -44,7 +46,6 @@ const api = new Api({
 function displayUserInfo(info) {
   profileName.textContent = info.name;
   profileDescription.textContent = info.about;
-ds
   const profileAvatar = document.querySelector(".profile__avatar");
   if (profileAvatar) {
     profileAvatar.src = info.avatar;
@@ -139,22 +140,36 @@ function closeModal(modal) {
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
-  api.editUserInfo({name:"test", about: "test" });
-  .then((data) => {});
-  .catch(console.error);
-  profileName.textContent = editModalNameInput.value;
-  profileDescription.textContent = editModalDescriptionInput.value;
-  closeModal(editModal);
+  api
+    .editUserInfo({
+      name: editModalNameInput.value,
+      about: editModalDescriptionInput.value,
+    })
+    .then((data) => {
+      //Use data argument instead of input values
+      profileName.textContent = editModalNameInput.value;
+      profileDescription.textContent = editModalDescriptionInput.value;
+      closeModal(editModal);
+    })
+    .catch(console.error);
 }
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
-  const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
-  const cardElement = getcardElement(inputValues);
-  cardsList.prepend(cardElement);
-  evt.target.reset(inputValues);
-  disabledButton(cardSubmitBtn, settings);
-  closeModal(cardModal);
+  api
+    .addCardInfo({
+      name: cardNameInput.value,
+      link: cardLinkInput.value,
+    })
+    .then((data) => {
+      const cardElement = getcardElement(data);
+      cardsList.prepend(cardElement);
+      evt.target.reset();
+      disabledButton(cardSubmitBtn, settings);
+      closeModal(cardModal);
+    }) 
+    .catch(console.error);
+
 }
 
 profileEditButton.addEventListener("click", () => {

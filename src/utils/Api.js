@@ -20,6 +20,18 @@ class Api {
     });
   }
 
+  getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "GET",
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
+
   editUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
@@ -29,11 +41,28 @@ class Api {
         name,
         about,
       }),
-     }).then((res) => {
+    }).then((res) => {
       if (res.ok) {
         return res.json();
       }
-      Promise.reject(`Error: ${res.status}`);
+     return Promise.reject(`Error: ${res.status}`);
+    });
+  }
+  addCardInfo({ name, link }) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: "POST",
+      headers: this._headers,
+      // Send the data in the body as a JSON string.
+      body: JSON.stringify({
+        name,
+        link,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        console.log("Sending data:", { name, link });
+        return res.json();
+      }
+     return Promise.reject(`Error: ${res.status}`);
     });
   }
   // creat get user info method diffrent base url
