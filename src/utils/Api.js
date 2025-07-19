@@ -4,6 +4,13 @@ class Api {
     this._headers = headers;
   }
 
+  checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    Promise.reject(`Error: ${res.status}`);
+  }
+
   getAppInfo() {
     // call get user info
     return Promise.all([this.getInitialCards(), this.getUserInfo()]);
@@ -12,24 +19,14 @@ class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this.checkResponse);
   }
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this.checkResponse);
   }
 
   editUserInfo({ name, about }) {
@@ -40,12 +37,7 @@ class Api {
         name,
         about,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this.checkResponse);
   }
 
   editAvatarInfo({ avatar }) {
@@ -55,24 +47,14 @@ class Api {
       body: JSON.stringify({
         avatar,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this.checkResponse);
   }
 
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this.checkResponse);
   }
 
   addCardInfo({ name, link }) {
@@ -83,13 +65,7 @@ class Api {
         name,
         link,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        console.log("Sending data:", { name, link });
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this.checkResponse);
   }
 
   handleLike(id, isLiked) {
@@ -97,12 +73,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${id}/Likes`, {
       method: method,
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this.checkResponse);
   }
   // creat get user info method diffrent base url
   // other methods for working with the API
