@@ -206,6 +206,7 @@ function openModal(modal) {
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleModalEvents);
 }
 
 function handleEditFormSubmit(evt) {
