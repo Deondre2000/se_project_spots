@@ -20,6 +20,12 @@
   transition: 0.5s linear;
 }
 
+.modal__form-delete {
+  gap: 20px;
+  display: flex;
+  justify-content: center;
+}
+
 .modal__contanier {
   padding: 32px 50px;
   max-width: 730px;
@@ -93,10 +99,20 @@
   line-height: 1;
   text-align: left;
   text-underline-position: from-font;
-  text-decoration-skip-ink: none;
   color: rgba(33, 33, 33, 1);
-  max-width: 169px;
   height: 32px;
+}
+
+.modal__title-delete {
+  display: flex;
+  justify-content: space-around;
+  opacity: 1;
+  font-family: Poppins, Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
 }
 
 .modal__label {
@@ -155,16 +171,77 @@
   font-weight: 500;
   line-height: 1;
   text-underline-position: from-font;
-  text-decoration-skip-ink: none;
 }
 
 .modal__submit-button-disabled {
   background: rgba(33, 33, 33, 1);
   opacity: 50%;
-
 }
 
 .modal__submit-button:hover {
+  cursor: pointer;
+}
+
+.modal__submit-button-delete {
+  width: 156px;
+  height: 52px;
+  padding-top: 18px;
+  padding-right: 32px;
+  padding-bottom: 18px;
+  padding-left: 32px;
+  gap: 8px;
+  opacity: 1;
+  border-radius: 8px;
+  font-family: Poppins, Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  border: 1px solid #212121;
+}
+
+.modal__submit-button-delete:hover {
+  cursor: pointer;
+  background: #ff6565;
+  border: none;
+}
+
+.modal__submit-button-cancel {
+  width: 156px;
+  height: 52px;
+  padding-top: 18px;
+  padding-right: 32px;
+  padding-bottom: 18px;
+  padding-left: 32px;
+  gap: 8px;
+  opacity: 1;
+  border-radius: 8px;
+  font-family: Poppins, Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  border: 1px solid #212121;
+}
+
+.modal__submit-button-cancel:hover {
+  cursor: pointer;
+  background: #ff6565;
+  border: none;
+}
+
+.modal__close-button-delete {
+  position: absolute;
+  right: -59px;
+  top: -2px;
+  width: 40px;
+  height: 40px;
+  background-image: url(../images/white-close.svg);
+  border: none;
+  background-color: transparent;
+}
+
+.modal__close-button-delete:hover {
   cursor: pointer;
 }
 
