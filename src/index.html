@@ -153,9 +153,10 @@
           <label class="modal__label" for="profile-avatar-input">
             Avatar
             <input
+              type="url"
               id="profile-avatar-input"
               class="modal__input"
-              name="avatar"
+              name="Avatar"
               placeholder="Avatar goes here"
               required
             />
@@ -169,10 +170,16 @@
     <div class="modal" id="delete-modal">
       <div class="modal__contanier">
         <button type="button" class="modal__close-button-delete"></button>
-        <h2 class="modal__title-delete">Are you sure you want to delete this image?</h2>
+        <h2 class="modal__title-delete">
+          Are you sure you want to delete this image?
+        </h2>
         <form id="delete-form" class="modal__form-delete" novalidate>
-          <button type="submit" class="modal__submit-button-delete">Delete</button>
-          <button type="button" class="modal__submit-button-cancel">Cancel</button>
+          <button type="submit" class="modal__submit-button-delete">
+            Delete
+          </button>
+          <button type="button" class="modal__submit-button-cancel">
+            Cancel
+          </button>
         </form>
       </div>
     </div>
