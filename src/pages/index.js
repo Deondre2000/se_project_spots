@@ -201,11 +201,14 @@ function handleDeleteSubmit(evt) {
 openModal;
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("click", handleModalEvents);
   document.addEventListener("keydown", handleModalEvents);
+
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("click", handleModalEvents);
   document.removeEventListener("keydown", handleModalEvents);
 }
 
@@ -287,12 +290,6 @@ profileEditButton.addEventListener("click", () => {
   openModal(editModal);
 });
 
-editModal.addEventListener("keydown", (evt) => {
-  if (evt.key === "Escape") {
-    closeModal(editModal);
-  }
-});
-
 editModalCloseButton.addEventListener("click", () => {
   closeModal(editModal);
 });
@@ -330,12 +327,6 @@ deleteForm.addEventListener("submit", handleDeleteSubmit);
 editFormElement.addEventListener("submit", handleEditFormSubmit);
 cardForm.addEventListener("submit", handleAddCardSubmit);
 avatarForm.addEventListener("submit", handleAvatarSubmit);
-
-document.addEventListener("click", (evt) => {
-  if (evt.target === document.querySelector(".modal_opened")) {
-    closeModal(document.querySelector(".modal_opened"));
-  }
-});
 
 function handleModalEvents(evt) {
   const openModalElement = document.querySelector(".modal_opened");
