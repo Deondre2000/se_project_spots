@@ -201,6 +201,7 @@ function handleDeleteSubmit(evt) {
 openModal;
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", handleModalEvents);
 }
 
 function closeModal(modal) {
@@ -328,15 +329,23 @@ deleteForm.addEventListener("submit", handleDeleteSubmit);
 editFormElement.addEventListener("submit", handleEditFormSubmit);
 cardForm.addEventListener("submit", handleAddCardSubmit);
 avatarForm.addEventListener("submit", handleAvatarSubmit);
-document.addEventListener("keydown", (evt) => {
-  const openModalElement = document.querySelector(".modal_opened");
-  if (openModalElement && evt.key === "Escape") {
-    closeModal(openModalElement);
-  }
-});
 
 document.addEventListener("click", (evt) => {
   if (evt.target === document.querySelector(".modal_opened")) {
     closeModal(document.querySelector(".modal_opened"));
   }
 });
+
+function handleModalEvents(evt) {
+  const openModalElement = document.querySelector(".modal_opened");
+
+  if (evt.type === "click" && evt.target === openModalElement) {
+    closeModal(document.querySelector(".modal_opened"));
+  } else if (
+    evt.type === "keydown" &&
+    evt.key === "Escape" &&
+    openModalElement
+  ) {
+    closeModal(openModalElement);
+  }
+}
